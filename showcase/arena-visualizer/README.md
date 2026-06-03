@@ -35,6 +35,32 @@ python showcase/arena-visualizer/arena_demo.py --json
 
 The demo is deterministic (great for docs and tests) but uses realistic outputs that mirror what grok-build-0.1 actually produces when the skill is followed.
 
+### Example terminal session (plain mode)
+```
+$ python showcase/arena-visualizer/arena_demo.py --plain
+
+=== SUBAGENT ARENA VISUALIZER — LIVE DEMO ===
+
+Question: Best way to add persistent memory / long-term recall to an MCP control center...
+
+--- Subagent 1: Fast local persistence ...
+... (findings, tradeoffs, steps, risks) ...
+
+Arena cost breakdown (parallel execution):
+  ...
+  TOTAL (parallel)                            5090 tokens   3120ms
+
+============================================================
+ARENA SYNTHESIS
+============================================================
+...
+Recommended hybrid path (execute this):
+  1. Phase 1 (fast): local JSONL + sqlite-vec backend behind a tiny `memory` MCP...
+...
+This demo was produced by the exact patterns in skills/subagent-arena/SKILL.md
+```
+(See the full captured run in the repo or run it yourself.)
+
 ## How It Was Built (Transparency)
 - Started with `plan-mode-orchestrator` on the question "Create a runnable, zero-to-hero demo of the subagent-arena skill that people can run in 10 seconds after cloning".
 - Used the `subagent-arena` pattern itself while designing the output formats and synthesis logic.

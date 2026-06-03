@@ -69,6 +69,15 @@ After install:
 grok inspect   # verify skills are loaded
 ```
 
+**Example usage evidence** (new in v0.2 — try it yourself):
+```bash
+$ python showcase/arena-visualizer/arena_demo.py --plain
+# ... 3 subagents with different charters, synthesis, cost tracking ...
+# Then in a real Grok Build session: hand the synthesis to plan-mode-orchestrator
+```
+
+Also try the new MCPs and the interactive version on the landing page. The same patterns are incredibly effective inside live Grok Build sessions.
+
 Use the public `grok-build-0.1` API directly in your own agents:
 
 ```python
@@ -232,7 +241,22 @@ This entire repository is configured as an exemplary Grok Build workspace (and i
 
 Clone it, run the installer, `grok inspect`, then `grok`. You will immediately feel the difference high-discipline configuration + skills make.
 
-This repo dogfoods its own patterns (including the changes that made the "showcases" honest and the templates actually usable).
+This repo dogfoods its own patterns (the v0.2.0 release — installer, arena demo, new MCP servers, interactive landing page, honest docs — was planned and executed using `plan-mode-orchestrator`, `subagent-arena` thinking for design choices, `tdd-intelligence` on the runnable demo, `skill-validator` + CI, and `git-discipline`).
+
+## Using the Discipline Beyond Grok Build (Portability)
+
+The core ideas — **Plan Mode first**, **parallel subagent arenas for exploration**, **narrowly-scoped reusable skills**, **MCP servers for new capabilities**, **tdd-intelligence + verification before declaration of done**, and **git-discipline** — are not tied exclusively to grok-build-0.1.
+
+They transfer extremely well to:
+- Claude Code / Cursor (use the same trigger phrases as CLAUDE.md or .cursorrules, or as custom instructions)
+- Aider, Continue.dev, or other agentic coding tools (the structured output templates from subagent-arena and plan-mode-orchestrator work great as system prompts)
+- Your own custom harnesses using the public xAI API or other model providers
+
+The `prompts/high-signal-examples.md` file and the skill frontmatter (`when-to-use` + example triggers) are deliberately written to be copy-pasteable.
+
+If you adapt these patterns successfully to another stack or tool, a short note or PR with the exact prompt/config you used is very welcome (credited in the changelog).
+
+The goal of the arsenal has always been to raise the floor for what "serious agentic coding" looks like, regardless of the specific model or harness.
 
 ## Author
 

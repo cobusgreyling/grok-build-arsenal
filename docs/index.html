@@ -253,7 +253,7 @@
         <div class="max-w-3xl">
             <span class="uppercase tracking-[2px] text-xs font-semibold text-emerald-400">Not theory</span>
             <h2 class="section-header tracking-tighter mb-4">Proof in Production</h2>
-            <p class="text-zinc-400">The skills and MCP patterns here have already shipped real, depended-on tools.</p>
+            <p class="text-zinc-400">The skills and MCP patterns here have already shipped real, depended-on tools. The core discipline (Plan Mode + arenas + skills + verification) also ports well to Claude Code, Cursor, Aider and custom harnesses.</p>
         </div>
         
         <div class="mt-8 grid md:grid-cols-2 gap-6">
@@ -338,6 +338,13 @@
                     <button onclick="copyTrigger(this, 'Review the architecture')" class="opacity-0 group-hover:opacity-100 text-[10px] px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700">copy</button>
                 </div>
                 <div class="text-xs text-zinc-400 mt-1">Boundaries, modularity, and reversible architecture changes.</div>
+            </div>
+            <div class="skill-card bg-zinc-950 border border-zinc-800 rounded-2xl p-5 group" data-name="security-audit">
+                <div class="flex justify-between items-start">
+                    <div class="font-semibold">security-audit</div>
+                    <button onclick="copyTrigger(this, 'Security review this diff / audit this MCP')" class="opacity-0 group-hover:opacity-100 text-[10px] px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700">copy</button>
+                </div>
+                <div class="text-xs text-zinc-400 mt-1">Focused security review for auth, injection, secrets, hooks/MCPs.</div>
             </div>
         </div>
         
