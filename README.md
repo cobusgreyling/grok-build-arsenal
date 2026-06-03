@@ -2,6 +2,9 @@
 
 ![Grok Build Arsenal Header](assets/grok_build.jpg)
 
+<!-- Social preview for GitHub cards -->
+<img src="assets/social-preview.jpg" width="100%" alt="Grok Build Arsenal social preview">
+
 **The definitive production toolkit and living showcase for Grok Build 0.1.**
 
 See what `grok-build-0.1` can actually build when given the right harness, skills, MCP servers, and Plan Mode discipline — then use the same utilities in your own projects.

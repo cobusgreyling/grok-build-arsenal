@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Grok Build Documentation
+    url: https://docs.x.ai/build/overview
+    about: Official xAI Grok Build docs and getting started
+  - name: xAI Grok Build News
+    url: https://x.ai/news
+    about: Latest announcements from xAI
+  - name: Discussions
+    url: https://github.com/cobusgreyling/grok-build-arsenal/discussions
+    about: For general questions, ideas, and showcases — use Discussions instead of Issues
