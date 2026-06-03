@@ -1,5 +1,7 @@
 # Grok Build Arsenal
 
+**Web landing page:** https://cobusgreyling.github.io/grok-build-arsenal/
+
 ![Grok Build Arsenal Header](assets/grok_build.jpg)
 
 <!-- Social preview for GitHub cards -->
