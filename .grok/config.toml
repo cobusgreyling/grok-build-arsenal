@@ -1,0 +1,13 @@
+# Grok Build configuration for grok-build-arsenal
+# This project is itself a model Grok Build workspace.
+
+[models]
+default = "grok-build"
+
+[skills]
+# Skills are discovered from skills/ and .grok/skills/
+paths = ["skills"]
+
+[features]
+# High-discipline project — keep strong guardrails
+plan_mode_default = true

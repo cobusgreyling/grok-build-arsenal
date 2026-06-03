@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Grok Build Arsenal session started. Run: grok inspect'",
+            "description": "Welcome and reminder to inspect the rich config"
+          }
+        ]
+      }
+    ]
+  }
+}

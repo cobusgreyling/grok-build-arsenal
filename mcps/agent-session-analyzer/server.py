@@ -1,0 +1,150 @@
+#!/usr/bin/env python3
+"""
+agent-session-analyzer MCP Server
+A production-oriented MCP server for deep analysis of AI agent sessions.
+
+Sole author: Cobus Greyling
+Part of Grok Build Arsenal.
+"""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any
+
+# In a real implementation, use the official MCP SDK (fastmcp or mcp).
+# This is a minimal illustrative server that shows the tool surface.
+
+try:
+    from mcp.server import Server
+    from mcp.server.stdio import stdio_server
+    from mcp.types import Tool, TextContent
+except ImportError:
+    # Fallback for environments without the SDK installed yet
+    Server = object  # type: ignore
+    stdio_server = lambda: None  # type: ignore
+    Tool = dict  # type: ignore
+    TextContent = dict  # type: ignore
+
+
+server = Server("agent-session-analyzer")
+
+# Simple in-memory taxonomy (expand this dramatically in real use)
+FAILURE_TAXONOMY = {
+    "planning_failure": "Agent produced a plan that was not followed or was low quality",
+    "tool_loop": "Repeated tool calls without progress",
+    "context_overflow": "Lost critical information due to context window pressure",
+    "instruction_drift": "Gradual deviation from original user intent",
+    "hallucination": "Confidently stated false facts or invented APIs",
+    "verification_gap": "Claimed success without running verification steps",
+    "integration_error": "Failed at boundaries between components or external services",
+}
+
+
+@server.list_tools()
+async def list_tools() -> list[Tool]:
+    return [
+        Tool(
+            name="ingest_session",
+            description="Ingest a session file or directory. Returns structured events and metadata.",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "path": {"type": "string", "description": "Path to session file or directory"},
+                    "format": {"type": "string", "enum": ["auto", "grok", "claude", "cursor", "generic"], "default": "auto"},
+                },
+                "required": ["path"],
+            },
+        ),
+        Tool(
+            name="classify_failures",
+            description="Classify failures in an already-ingested session using the living taxonomy.",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "session_id": {"type": "string"},
+                    "taxonomy_version": {"type": "string", "default": "2026.06"},
+                },
+                "required": ["session_id"],
+            },
+        ),
+        Tool(
+            name="generate_report",
+            description="Generate a human-readable report (markdown, json, or html) for one or more sessions.",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "session_ids": {"type": "array", "items": {"type": "string"}},
+                    "format": {"type": "string", "enum": ["markdown", "json", "html"], "default": "markdown"},
+                    "include_heatmaps": {"type": "boolean", "default": True},
+                },
+                "required": ["session_ids"],
+            },
+        ),
+        Tool(
+            name="fingerprint_failure",
+            description="Create a stable fingerprint for a specific failure event to enable correlation across sessions.",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "event": {"type": "object", "description": "The failure event or snippet"},
+                },
+                "required": ["event"],
+            },
+        ),
+    ]
+
+
+@server.call_tool()
+async def call_tool(name: str, arguments: dict[str, Any]) -> list[TextContent]:
+    if name == "ingest_session":
+        path = arguments["path"]
+        fmt = arguments.get("format", "auto")
+        # In real impl: actually parse the file(s)
+        result = {
+            "status": "ingested",
+            "path": path,
+            "format": fmt,
+            "events": 42,  # placeholder
+            "session_id": "sess_" + Path(path).stem,
+            "note": "This is a skeleton. Full parser lives in the showcase/agent-observability-dashboard.",
+        }
+        return [TextContent(type="text", text=json.dumps(result, indent=2))]
+
+    if name == "classify_failures":
+        return [TextContent(type="text", text=json.dumps({
+            "classifications": [
+                {"type": "planning_failure", "confidence": 0.82, "evidence": "Plan mentioned X but no edits to X occurred"},
+                {"type": "verification_gap", "confidence": 0.71, "evidence": "Agent declared success without running tests"},
+            ],
+            "taxonomy": FAILURE_TAXONOMY,
+        }, indent=2))]
+
+    if name == "generate_report":
+        fmt = arguments.get("format", "markdown")
+        content = "# Agent Session Report\n\nGenerated by agent-session-analyzer MCP (Grok Build Arsenal - Cobus Greyling).\n\n..."
+        return [TextContent(type="text", text=content if fmt == "markdown" else json.dumps({"report": content}))]
+
+    if name == "fingerprint_failure":
+        return [TextContent(type="text", text=json.dumps({
+            "fingerprint": "fp_9f3a8c2e1b",
+            "cluster_size": 7,
+            "first_seen": "2026-05-20",
+        }))]
+
+    return [TextContent(type="text", text=f"Unknown tool: {name}")]
+
+
+async def main():
+    async with stdio_server() as (read_stream, write_stream):
+        await server.run(
+            read_stream,
+            write_stream,
+            server.create_initialization_options(),
+        )
+
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())

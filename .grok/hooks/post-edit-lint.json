@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Post-edit: consider running ruff, pytest, or grok inspect on relevant files'",
+            "description": "Reminder to verify after edits"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+# Grok Build ignore patterns - optimized for agentic coding
+# Secrets and credentials
+.env*
+*.pem
+*.key
+secrets/
+credentials/
+
+# Large generated or binary
+node_modules/
+dist/
+build/
+*.min.*
+*.map
+*.lock
+
+# Cache and temp
+__pycache__/
+*.pyc
+.cache/
+tmp/
+temp/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Test artifacts and coverage (keep source tests)
+htmlcov/
+.coverage
+.pytest_cache/
+
+# OS
+.DS_Store
+
+# Session artifacts (Grok Build)
+.grok/sessions/
+.grok/logs/
+*.grok-session
+
+# Large media unless intentional
+*.mp4
+*.mov
+*.zip
+*.tar.gz

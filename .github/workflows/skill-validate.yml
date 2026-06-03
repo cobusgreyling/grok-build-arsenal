@@ -1,0 +1,30 @@
+name: Validate Skills and MCPs
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install validation deps
+        run: pip install pyyaml
+      - name: Validate all SKILL.md frontmatter
+        run: python scripts/validate-skills.py
+      - name: Check MCP READMEs exist
+        run: |
+          for d in mcps/*/; do
+            if [ ! -f "${d}README.md" ]; then
+              echo "Missing README.md in $d"
+              exit 1
+            fi
+          done
+          echo "All MCPs have READMEs"
