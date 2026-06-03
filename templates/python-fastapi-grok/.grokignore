@@ -1,47 +1,17 @@
-# Grok Build ignore patterns - optimized for agentic coding
-# Secrets and credentials
-.env*
-*.pem
-*.key
-secrets/
-credentials/
-
-# Large generated or binary
-node_modules/
-dist/
-build/
-*.min.*
-*.map
-*.lock
-
-# Cache and temp
+# Grok Build ignore for Python FastAPI projects (from arsenal template)
 __pycache__/
 *.pyc
-.cache/
-tmp/
-temp/
+.venv/
+.env
+.env.*
 *.log
-
-# IDE
-.idea/
-.vscode/
-*.swp
-
-# Test artifacts and coverage (keep source tests)
-htmlcov/
-.coverage
 .pytest_cache/
-
-# OS
-.DS_Store
-
-# Session artifacts (Grok Build)
+.mypy_cache/
+htmlcov/
+dist/
+build/
+*.egg-info/
+# Agent session logs (often large / sensitive)
+*.grok-session
 .grok/sessions/
 .grok/logs/
-*.grok-session
-
-# Large media unless intentional
-*.mp4
-*.mov
-*.zip
-*.tar.gz

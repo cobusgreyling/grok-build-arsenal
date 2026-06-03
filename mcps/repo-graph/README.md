@@ -19,6 +19,8 @@ Gives `grok-build-0.1` (and subagents) a structural map of the repo instead of r
 
 Requires optional graphviz for visual exports. The server is intentionally small and focused.
 
+A minimal but functional server.py is included (same pattern as agent-session-analyzer).
+
 Full usage examples and driving skill patterns are demonstrated in the `architecture-reviewer` skill and relevant showcases.
 
 **This MCP was designed and prototyped using Grok Build 0.1 + Plan Mode.**

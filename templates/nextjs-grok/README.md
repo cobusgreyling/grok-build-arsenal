@@ -1,9 +1,20 @@
-# nextjs-grok
+# Next.js + Grok Build Starter
 
-Grok Build starter template.
+Production-minded Next.js (App Router) starter pre-configured for Grok Build 0.1.
 
-**Sole author: Cobus Greyling**
+**Author:** Cobus Greyling (from grok-build-arsenal)
 
-See the Python FastAPI template for the full example pattern, then adapt.
+## Quick Start
+```bash
+cp -a /path/to/grok-build-arsenal/templates/nextjs-grok/. /path/to/my-nextjs-app/
+cd /path/to/my-nextjs-app
+bash /path/to/grok-build-arsenal/scripts/install-skills.sh
+grok inspect
+grok
+```
 
-Copy into new project and run grok inspect.
+See `python-fastapi-grok/` for the richest template example (AGENTS.md, full .grok/ setup, seeded skills).
+
+Recommended skills for Next.js work: `plan-mode-orchestrator`, `tdd-intelligence`, `browser-qa` (for UI validation), `architecture-reviewer`.
+
+**All original work by Cobus Greyling.**

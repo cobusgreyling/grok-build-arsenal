@@ -17,6 +17,7 @@ See what `grok-build-0.1` can actually build when given the right harness, skill
 [![grok-build-0.1 API](https://img.shields.io/badge/API-grok--build--0.1-blue?style=for-the-badge)](https://docs.x.ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 [![Skills: Production-Grade](https://img.shields.io/badge/Skills-Production--Grade-ff6b35?style=for-the-badge)](skills/)
+[![CI](https://github.com/cobusgreyling/grok-build-arsenal/actions/workflows/skill-validate.yml/badge.svg)](https://github.com/cobusgreyling/grok-build-arsenal/actions/workflows/skill-validate.yml)
 
 ---
 
@@ -40,20 +41,32 @@ Everything here was built or refined using Grok Build 0.1 itself.
 git clone https://github.com/cobusgreyling/grok-build-arsenal.git
 cd grok-build-arsenal
 
+# One-command install of all production skills (into this project or elsewhere)
+bash scripts/install-skills.sh
+
 # Inspect everything Grok discovers (skills, rules, hooks, MCPs)
 grok inspect
 
-# Start a session
+# Start a session (the repo itself is an exemplary Grok Build workspace)
 grok
 ```
 
-Install the skills into any project:
+Install the skills into any project (frictionless):
 
 ```bash
-# From this repo
-cp -R skills/ /path/to/your-project/.grok/skills/
+# Recommended: one-command installer
+bash /path/to/grok-build-arsenal/scripts/install-skills.sh
 
-# Or use the installer (coming soon)
+# Or target a specific project
+bash scripts/install-skills.sh --target /path/to/your-project
+
+# Or install user-wide for all projects
+bash scripts/install-skills.sh --global
+```
+
+After install:
+```bash
+grok inspect   # verify skills are loaded
 ```
 
 Use the public `grok-build-0.1` API directly in your own agents:
@@ -74,27 +87,22 @@ response = client.responses.create(
 
 ## Showcase — Real Projects Built with Grok Build 0.1
 
-Each showcase includes the original prompts, Plan Mode plans, subagent usage, key skills/MCPs, and build notes.
+Each showcase directory contains the original prompts, Plan Mode plans, subagent usage notes, key skills/MCPs used, and transparent build story. The actual shipped code for the flagship lives in a dedicated, polished, installable package (the arsenal is the *playbook + reusable parts*).
 
-### 1. Agent Observability Dashboard
-**Location:** `showcase/agent-observability-dashboard/`
+### 1. Agent Observability Dashboard (Flagship)
+**Build story + MCP:** `showcase/agent-observability-dashboard/`  
+**Real production deliverable:** https://github.com/cobusgreyling/agent-failure-analyzer (PyPI: `pip install agent-failure-analyzer`)
 
-A beautiful, self-hosted web dashboard for analyzing AI agent sessions across Grok Build, Claude Code, Cursor, and custom harnesses.
+Full production CLI + TUI + web dashboard + library for ingesting and deeply analyzing agent sessions from 6+ frameworks. Living failure taxonomy (30+ subcategories), cost waste analysis, risk scoring, Grafana/OTLP, GitHub Action, Docker, PR comment integration, LLM-assisted classification.
 
-- Session ingestion and fingerprinting
-- Failure taxonomy + heatmaps
-- Cost and token attribution
-- Replay and diff views
-- OTLP export + Grafana integration
+**Built with (arsenal in action):** `plan-mode-orchestrator`, `subagent-arena`, custom `agent-session-analyzer` MCP, `tdd-intelligence`, `architecture-reviewer`, `security-audit`, `git-discipline`.
 
-**Built with:** Plan Mode, 3 subagents (log parser, classifier, visualizer), custom `agent-session-analyzer` MCP, `tdd-intelligence` skill.
-
-**Result:** Full working dashboard + CLI + exporters shipped in focused sessions with clean git history.
+This is the concrete proof that disciplined use of the skills + MCP patterns in this repo ships real, maintained, depended-on tools.
 
 ### 2. Subagent Arena Visualizer
 **Location:** `showcase/arena-visualizer/`
 
-Interactive TUI + web UI for running parallel subagents on the same task, scoring approaches, and visualizing consensus vs divergence.
+Interactive TUI + web UI concepts for running parallel subagents on the same task, scoring approaches, and visualizing consensus vs divergence.
 
 - Real-time arena execution
 - Structured comparison output
@@ -106,7 +114,7 @@ Interactive TUI + web UI for running parallel subagents on the same task, scorin
 ### 3. MCP Control Center
 **Location:** `showcase/mcp-control-center/`
 
-A polished control plane for discovering, installing, validating, and monitoring MCP servers and skills across projects.
+A polished control plane vision for discovering, installing, validating, and monitoring MCP servers and skills across projects.
 
 - MCP manifest browser
 - One-command install + trust management
@@ -126,6 +134,31 @@ Production test selection, impact analysis, flakiness detection, and coverage-gu
 - Generates safe edit plans
 
 **Built with:** Deep repo understanding, `test-intelligence` MCP, repeated Plan Mode + verification loops.
+
+## Related Projects & Proof
+
+The skills, MCPs, and discipline in this arsenal are not theoretical. They have already produced real, maintained, installable tools used in production workflows.
+
+### Flagship Delivered Project
+- **[agent-failure-analyzer](https://github.com/cobusgreyling/agent-failure-analyzer)** (PyPI: `pip install agent-failure-analyzer`)
+  - Full CLI + TUI + web dashboard for AI agent session analysis across 6+ frameworks.
+  - Living taxonomy (30+ subcategories), cost waste estimation, risk scoring, OTLP/Grafana export, GitHub Action, Docker, PR comment workflows, LLM-assisted classification.
+  - **Build story & MCP:** See `showcase/agent-observability-dashboard/`.
+  - **Built with (arsenal in action):** `plan-mode-orchestrator`, `subagent-arena`, `agent-session-analyzer` MCP, `tdd-intelligence`, `architecture-reviewer`, `security-audit`, `git-discipline`.
+
+### In-Arsenal Demos & Prototypes (runnable today)
+- **Subagent Arena Visualizer** (`showcase/arena-visualizer/`)
+  - `python showcase/arena-visualizer/arena_demo.py` — live, deterministic simulation of the `subagent-arena` skill (3 charters → synthesis → cost tracking).
+  - Zero hard deps (rich optional for beauty). Perfect teaching tool and starting point for real arena runners.
+- **MCP Implementations**: `agent-session-analyzer`, `repo-graph`, `test-intelligence`, and `skill-validator` now ship with working `server.py` skeletons (see `mcps/*/server.py` and their READMEs). These are the exact patterns used to build the flagship.
+
+### Future / In-Progress (using the same discipline)
+- MCP Control Center and Smart Test Intelligence Engine showcases will receive runnable prototypes as they reach the production bar of the flagship.
+- New skills and MCPs are added only after they have been used to ship something real (dogfooding).
+
+When you use `bash scripts/install-skills.sh` and follow the skills, you are using the exact same toolkit that produced the above artifacts.
+
+**All original work by Cobus Greyling using Grok Build 0.1 + the patterns documented here.**
 
 ## Skills Library
 
@@ -151,23 +184,29 @@ Custom, narrowly-focused MCP servers optimized for agentic coding workflows. The
 
 | MCP | Purpose | Key Capabilities |
 |-----|---------|------------------|
-| `agent-session-analyzer` | Ingest and deeply analyze agent sessions (Grok, Claude, Cursor, etc.) | Failure taxonomy, cost attribution, fingerprinting, replay |
-| `repo-graph` | Generate rich architecture and dependency graphs | Module boundaries, call graphs, visual + textual output |
-| `test-intelligence` | Smart test selection and impact analysis | Minimal test sets, flakiness detection, coverage guidance |
-| `browser-qa` | Visual + accessibility QA during UI work | Screenshots, console capture, a11y checks, diffing |
-| `skill-validator` | Validate skills and MCP servers themselves | Frontmatter checks, safety analysis, test harness |
+| `agent-session-analyzer` | Ingest and deeply analyze agent sessions (Grok, Claude, Cursor, etc.) | **Has working server.py + powers the real PyPI package** |
+| `repo-graph` | Generate rich architecture and dependency graphs | Has skeleton server.py. Great for architecture-reviewer |
+| `test-intelligence` | Smart test selection, impact analysis, flakiness detection | **Now has full skeleton server.py** (predict, run minimal, detect flaky, coverage-guided plans). Pairs with tdd-intelligence. |
+| `browser-qa` | Visual + accessibility QA during UI work | Skeleton (pairs great with UI work + tdd-intelligence) |
+| `skill-validator` | Validate skills and MCP servers themselves | **Now has full skeleton server.py** (frontmatter, structure, safety audit, report generator). Used by CI and self-validation. |
 
-Each MCP directory contains a README with setup, manifest, example server implementation, and the skill that knows how to drive it.
+Each MCP directory contains a README with setup, manifest, example server implementation (where available), and the skill that knows how to drive it. As of v0.2 we now ship working skeletons for `agent-session-analyzer`, `repo-graph`, `test-intelligence`, and `skill-validator`. `browser-qa` remains the thinnest (intentionally narrow scope).
 
 ## Project Templates
 
-Ready-to-use `.grok/` configurations for common stacks:
+Ready-to-use project roots with `.grok/` configuration, AGENTS.md, .grokignore, and pre-seeded core skills for common stacks. Copy the folder contents into a fresh project and you're immediately in a high-discipline Grok Build environment.
 
-- `templates/nextjs-grok/` — Next.js App Router with server/client boundaries, testing, and deployment rules
-- `templates/python-fastapi-grok/` — FastAPI + SQLAlchemy + pytest + security-first setup
-- `templates/rust-cli-grok/` — Rust CLI with strong testing, error handling, and release discipline
+- `templates/python-fastapi-grok/` — **Richest example.** Full AGENTS.md, .grok/config + hooks + seeded skills, .grokignore. FastAPI + testing + security-first.
+- `templates/nextjs-grok/` — Next.js App Router focused starter.
+- `templates/rust-cli-grok/` — Rust CLI with testing/release discipline.
 
-Copy the entire template folder into a new project and run `grok inspect`.
+After copying:
+```bash
+bash /path/to/this-arsenal/scripts/install-skills.sh
+grok inspect
+```
+
+These templates + the installer turn "start a new Grok Build project" into a 30-second operation.
 
 ## Using grok-build-0.1 via the Public xAI API
 
@@ -182,15 +221,18 @@ See `examples/api-usage.md`.
 
 ## The Repo Itself Is a Grok Build Project
 
-This entire repository is configured as an exemplary Grok Build workspace:
+This entire repository is configured as an exemplary Grok Build workspace (and is continuously improved using its own skills):
 
-- Excellent `AGENTS.md` at root
-- Multiple production skills in `.grok/skills/`
-- Custom hooks for formatting and safety
-- `.grokignore` tuned for agent work
+- Excellent `AGENTS.md` at root (the single source of truth for agent behavior)
+- Production skills in `skills/` + `.grok/skills/` (use `bash scripts/install-skills.sh`)
+- Custom hooks for reminders (post-edit verification, session start)
+- `.grokignore` tuned for agent work (avoids committing huge session logs)
 - `grok inspect` is the source of truth
+- CI that validates skills, MCP READMEs, the installer, and templates
 
-Run it yourself to see how a high-discipline Grok Build project feels.
+Clone it, run the installer, `grok inspect`, then `grok`. You will immediately feel the difference high-discipline configuration + skills make.
+
+This repo dogfoods its own patterns (including the changes that made the "showcases" honest and the templates actually usable).
 
 ## Author
 

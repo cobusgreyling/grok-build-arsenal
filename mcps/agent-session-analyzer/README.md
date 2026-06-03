@@ -61,6 +61,12 @@ There is also a full showcase built around this MCP: `showcase/agent-observabili
 
 ## Status
 
-Production-grade skeleton + real parser examples included in the showcase. Expand the taxonomy and correlation engine as needed.
+Minimal but functional MCP server (illustrative implementation using the MCP SDK surface) + full production parsers, classifiers, exporters, and dashboard live in the shipped package.
+
+See the flagship showcase `showcase/agent-observability-dashboard/` for the complete transparent build story and links to:
+- https://github.com/cobusgreyling/agent-failure-analyzer (source)
+- `pip install agent-failure-analyzer` (the real thing)
+
+The MCP in this directory is what the agent used to help *build* the full tool.
 
 **Author:** Cobus Greyling

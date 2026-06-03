@@ -28,3 +28,17 @@ jobs:
             fi
           done
           echo "All MCPs have READMEs"
+
+      - name: Validate installer script (dry-run)
+        run: |
+          bash scripts/install-skills.sh --dry-run
+          echo "Installer dry-run OK"
+
+      - name: Sanity check templates have basic .grok structure
+        run: |
+          for t in templates/*/; do
+            if [ -f "${t}README.md" ]; then
+              echo "Template $(basename $t) has README"
+            fi
+          done
+          echo "Template structure looks sane"

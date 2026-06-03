@@ -1,0 +1,16 @@
+# Grok Build config for a production FastAPI service
+# Generated from grok-build-arsenal template
+
+[models]
+default = "grok-build"
+
+[skills]
+paths = ["skills", ".grok/skills"]
+
+[features]
+plan_mode_default = true
+
+[mcp]
+# Recommended MCPs for API work (uncomment and configure after installing from arsenal)
+# test-intelligence = { ... }
+# repo-graph = { ... }
