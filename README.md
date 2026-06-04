@@ -144,6 +144,30 @@ Production test selection, impact analysis, flakiness detection, and coverage-gu
 
 **Built with:** Deep repo understanding, `test-intelligence` MCP, repeated Plan Mode + verification loops.
 
+### 5. Visible Reasoning Agent Framework (nemotron-think)
+**Location:** `showcase/nemotron-think/`  
+**Live landing page:** https://cobusgreyling.github.io/nemotron-think/
+
+CLI + Python library + self-contained interactive docs page for Nemotron 3 Ultra that makes every reasoning step, tool-call delta, and observation first-class and replayable. Rich JSON traces, color-coded terminal streaming, controllable budgets, pluggable tools, perfect offline demo replay.
+
+**Built with:** `plan-mode-orchestrator`, `subagent-arena` (tool & trace design), `tdd-intelligence`, `git-discipline`, showcase page iteration with browser-qa patterns.
+
+### 6. Secure Agent Runtime (NemoClaw)
+**Location:** `showcase/nemoclaw-runtime/`  
+**GitHub:** https://github.com/cobusgreyling/nemoclaw-runtime
+
+Reference implementation of the "model proposes, runtime disposes" architecture: gateway, explainable JSON policy engine, policy-gated OpenShell sandbox, and Hermes (durable skill capture + replay). Zero hard deps for the core. Includes live stdlib control-plane dashboard.
+
+**Built with:** `plan-mode-orchestrator` + architecture-reviewer on the layered design, `subagent-arena` on policy + skills strategy, `tdd-intelligence` on the executor that must never lie.
+
+### 7. Nemotron 3 Ultra Feature Playground
+**Location:** `showcase/nemotron-3-ultra-showcase/`  
+**GitHub:** https://github.com/cobusgreyling/nemotron-3-ultra-showcase
+
+Focused Gradio app (NVIDIA-green) + screenshot assets + BLOG.md that exercises the model's headline agentic features live: reasoning ON/OFF/Low Effort + budget slider, streaming reasoning, streaming tool calls with local execution.
+
+**Built with:** Plan Mode for the harness around `chat_template_kwargs`, careful streaming accumulation logic, visual presentation discipline.
+
 ## Related Projects & Proof
 
 The skills, MCPs, and discipline in this arsenal are not theoretical. They have already produced real, maintained, installable tools used in production workflows.
@@ -160,6 +184,11 @@ The skills, MCPs, and discipline in this arsenal are not theoretical. They have 
   - `python showcase/arena-visualizer/arena_demo.py` — live, deterministic simulation of the `subagent-arena` skill (3 charters → synthesis → cost tracking).
   - Zero hard deps (rich optional for beauty). Perfect teaching tool and starting point for real arena runners.
 - **MCP Implementations**: `agent-session-analyzer`, `repo-graph`, `test-intelligence`, and `skill-validator` now ship with working `server.py` skeletons (see `mcps/*/server.py` and their READMEs). These are the exact patterns used to build the flagship.
+
+### Nemotron / Runtime Harnesses (delivered, public)
+- **[nemotron-think](https://github.com/cobusgreyling/nemotron-think)** — Visible reasoning agent framework + CLI + rich replayable traces + beautiful standalone landing page (https://cobusgreyling.github.io/nemotron-think/). Build story in `showcase/nemotron-think/`.
+- **[nemoclaw-runtime](https://github.com/cobusgreyling/nemoclaw-runtime)** — Secure gateway + policy + sandbox + durable skills runtime with live control plane. Build story in `showcase/nemoclaw-runtime/`.
+- **[nemotron-3-ultra-showcase](https://github.com/cobusgreyling/nemotron-3-ultra-showcase)** — Gradio playground exercising reasoning modes, budgets, and tool calling on the live model + screenshots + analysis. Build story in `showcase/nemotron-3-ultra-showcase/`.
 
 ### Future / In-Progress (using the same discipline)
 - MCP Control Center and Smart Test Intelligence Engine showcases will receive runnable prototypes as they reach the production bar of the flagship.

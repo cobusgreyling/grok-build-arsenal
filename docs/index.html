@@ -245,6 +245,35 @@
                 </div>
                 <div class="mt-6 text-xs text-zinc-500">Uses custom test-intelligence MCP</div>
             </div>
+
+            <!-- New Nemotron / Runtime showcases (now public) -->
+            <div class="grok-card bg-zinc-900 border border-zinc-800 rounded-3xl p-6 flex flex-col">
+                <div class="flex-1">
+                    <h3 class="font-semibold text-xl tracking-tight mb-3">nemotron-think</h3>
+                    <p class="text-zinc-400 text-sm">Visible reasoning agent framework for Nemotron 3 Ultra. Streams thinking + tool deltas in color, persists rich replayable JSON traces, beautiful standalone landing page + CLI.</p>
+                </div>
+                <div class="mt-6">
+                    <div class="skill-pill inline-block">Live GH Pages demo</div>
+                </div>
+            </div>
+
+            <div class="grok-card bg-zinc-900 border border-zinc-800 rounded-3xl p-6 flex flex-col">
+                <div class="flex-1">
+                    <h3 class="font-semibold text-xl tracking-tight mb-3">NemoClaw Runtime</h3>
+                    <p class="text-zinc-400 text-sm">Secure agent runtime: gateway + explainable policy + sandbox + durable skills (Hermes). Model proposes; runtime disposes. Live stdlib control plane.</p>
+                </div>
+                <div class="mt-6">
+                    <div class="skill-pill inline-block">Runtime / harness</div>
+                </div>
+            </div>
+
+            <div class="grok-card bg-zinc-900 border border-zinc-800 rounded-3xl p-6 flex flex-col">
+                <div class="flex-1">
+                    <h3 class="font-semibold text-xl tracking-tight mb-3">Nemotron 3 Ultra Showcase</h3>
+                    <p class="text-zinc-400 text-sm">Gradio playground + screenshots exercising reasoning modes, budget control, and streaming tool calling on the live Nemotron 3 Ultra endpoint.</p>
+                </div>
+                <div class="mt-6 text-xs text-zinc-500">Gradio + assets + BLOG.md</div>
+            </div>
         </div>
     </div>
 
@@ -256,7 +285,7 @@
             <p class="text-zinc-400">The skills and MCP patterns here have already shipped real, depended-on tools. The core discipline (Plan Mode + arenas + skills + verification) also ports well to Claude Code, Cursor, Aider and custom harnesses.</p>
         </div>
         
-        <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
                 <div class="font-semibold text-lg tracking-tight">agent-failure-analyzer</div>
                 <div class="text-emerald-400 text-sm mt-1">PyPI • GitHub Action • Full Dashboard + TUI</div>
@@ -276,6 +305,17 @@
                     <li><span class="font-medium text-white">Templates + installer</span> — bash scripts/install-skills.sh + full .grok/ starters for FastAPI/Next/Rust.</li>
                 </ul>
                 <div class="mt-4 text-xs text-zinc-500">All created and validated using the skills documented in this repo.</div>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
+                <div class="font-semibold text-lg tracking-tight">Nemotron &amp; Runtime Harnesses</div>
+                <div class="text-emerald-400 text-sm mt-1">Public • GH Pages demos • Full harnesses</div>
+                <ul class="mt-3 space-y-2 text-sm text-zinc-400">
+                    <li><a href="https://github.com/cobusgreyling/nemotron-think" class="text-white hover:underline">nemotron-think</a> — visible reasoning + replayable traces + <a href="https://cobusgreyling.github.io/nemotron-think/" class="hover:underline">live landing</a></li>
+                    <li><a href="https://github.com/cobusgreyling/nemoclaw-runtime" class="text-white hover:underline">nemoclaw-runtime</a> — gateway + policy + sandbox + durable skills + control plane</li>
+                    <li><a href="https://github.com/cobusgreyling/nemotron-3-ultra-showcase" class="text-white hover:underline">nemotron-3-ultra-showcase</a> — Gradio feature playground + screenshots + BLOG</li>
+                </ul>
+                <div class="mt-3 text-[10px] text-zinc-500">Build stories in <code class="bg-black px-1">showcase/nemotron-*/</code> and <code class="bg-black px-1">showcase/nemoclaw-runtime/</code></div>
             </div>
         </div>
     </div>
